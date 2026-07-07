@@ -4,6 +4,20 @@ from logger import log_activity
 
 router = APIRouter()
 
+
+@router.get("/users")
+def get_users():
+
+    users = list(
+        db.users.find(
+            {},
+            {"_id": 0}
+        )
+    )
+
+    return users
+
+
 @router.get("/users/search")
 def search_users(name: str = Query(...)):
 

@@ -1,12 +1,12 @@
 function Notifications() {
   return (
     <div className="card">
-      <h3>Notifications</h3>
+      <h3>System Status</h3>
 
-      <p>✅ MySQL Connected</p>
-      <p>✅ MongoDB Connected</p>
-      <p>📤 File Upload Enabled</p>
-      <p>🔐 Firebase Authentication Ready</p>
+      <p>✅ Employee Records</p>
+<p>✅ Training Records</p>
+<p>📄 Google Drive Synced</p>
+<p>🔐 Authentication Enabled</p>
     </div>
   );
 }

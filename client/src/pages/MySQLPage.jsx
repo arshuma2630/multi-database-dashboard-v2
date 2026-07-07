@@ -53,11 +53,11 @@ console.log("Employees:", employees);
 
 return (
   <div>
-    <h2>MySQL Employees</h2>
+    <h2>Employee Records (HR Dashboard)</h2>
     <p>Total Employees: {employees.length}</p>
     <input
   type="text"
-  placeholder="Search employee..."
+  placeholder="Search employee by name..."
   value={search}
   onChange={(e) => setSearch(e.target.value)}
 />
@@ -76,9 +76,20 @@ return (
     <p>Salary: ₹{emp.salary}</p> */}
 
 <div key={emp.id} className="employee-card">
-  <h3>{emp.name}</h3>
-  <p>{emp.role}</p>
-  <p>₹{emp.salary}</p>
+  {/* <h3>{emp.name}</h3>
+
+<p>
+  Role: {emp.role}
+</p>
+
+<p>
+  Salary: ₹{emp.salary}
+</p> */}
+
+<h3>{emp.name}</h3>
+<p>Department: {emp.department}</p>
+<p>Role: {emp.role}</p>
+<p>Salary: ₹{emp.salary}</p>
 </div>
 
     

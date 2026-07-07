@@ -37,7 +37,7 @@ function MongoPage() {
   
     return (
   <div>
-    <h2>MongoDB Users</h2>
+    <h2>Employee Training & Compliance Tracker</h2>
 
     <input
       type="text"
@@ -52,8 +52,27 @@ function MongoPage() {
 
     {users.map((user, index) => (
       <div key={index} className="employee-card">
+        {/* <h3>{user.name}</h3>
+        <p>{user.role}</p> */}
+
         <h3>{user.name}</h3>
-        <p>{user.role}</p>
+
+<p>Department: {user.department}</p>
+
+<p>Training: {user.training}</p>
+
+<p>
+  Status:
+  <span
+    style={{
+      color: user.status === "Completed" ? "green" : "red",
+      fontWeight: "bold",
+      marginLeft: "5px"
+    }}
+  >
+    {user.status}
+  </span>
+</p>
         <hr />
       </div>
     ))}

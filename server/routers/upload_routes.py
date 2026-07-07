@@ -5,8 +5,12 @@ from logger import log_activity
 
 router = APIRouter()
 
+
 @router.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
+
+    print("Uploading:", file.filename)
+    print("Current Directory:", os.getcwd())
 
     log_activity("File Uploaded")
 
@@ -25,3 +29,23 @@ def get_files():
     files = os.listdir("uploads")
 
     return files
+
+
+@router.delete("/files/{filename}")
+def delete_file(filename: str):
+
+    file_path = f"uploads/{filename}"
+
+    if os.path.exists(file_path):
+
+        os.remove(file_path)
+
+        log_activity(f"File Deleted: {filename}")
+
+        return {
+            "message": "File deleted successfully"
+        }
+
+    return {
+        "message": "File not found"
+    }

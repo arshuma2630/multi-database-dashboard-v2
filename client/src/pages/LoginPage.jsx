@@ -1,11 +1,19 @@
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, signOut } from "firebase/auth";
 import { auth, provider } from "../firebase";
 
-function LoginPage({ setUser }) {
+function LoginPage({ user, setUser }) {
 
   const handleGoogleLogin = async () => {
     try {
-      const result = await signInWithPopup(auth, provider);
+
+      provider.setCustomParameters({
+        prompt: "select_account"
+      });
+
+      const result = await signInWithPopup(
+        auth,
+        provider
+      );
 
       setUser(result.user);
 
@@ -14,13 +22,63 @@ function LoginPage({ setUser }) {
     }
   };
 
-  return (
-    <div>
-      <h1>Multi Database Dashboard</h1>
+  const handleLogout = async () => {
+    try {
 
-      <button onClick={handleGoogleLogin}>
-        Sign in with Google
-      </button>
+      await signOut(auth);
+
+      setUser(null);
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <div
+      style={{
+        background: "white",
+        padding: "15px",
+        borderRadius: "10px",
+        marginBottom: "20px",
+        boxShadow: "0px 2px 8px rgba(0,0,0,0.1)"
+      }}
+    >
+      {user ? (
+        <div>
+          <h3>
+            Welcome, {user.displayName}
+          </h3>
+
+          <p>
+            {user.email}
+          </p>
+
+          <button
+            onClick={handleLogout}
+            style={{
+              padding: "8px 15px",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer"
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      ) : (
+        <button
+          onClick={handleGoogleLogin}
+          style={{
+            padding: "10px 20px",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer"
+          }}
+        >
+          Sign in with Google
+        </button>
+      )}
     </div>
   );
 }

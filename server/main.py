@@ -4,6 +4,7 @@ from routers.mysql_routes import router as mysql_router
 from routers.mongo_routes import router as mongo_router
 from routers.google_docs_routes import router as google_docs_router
 from routers.upload_routes import router as upload_router
+from routers.ai_query import router as ai_router
 
 app = FastAPI()
 
@@ -19,6 +20,7 @@ app.include_router(mysql_router)
 app.include_router(mongo_router)
 app.include_router(google_docs_router)
 app.include_router(upload_router)
+app.include_router(ai_router)
 
 @app.get("/")
 def home():

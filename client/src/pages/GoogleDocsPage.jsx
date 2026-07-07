@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import API from "../services/api";
 
 function GoogleDocsPage() {
+
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
@@ -10,30 +11,48 @@ function GoogleDocsPage() {
 
   const fetchDocs = async () => {
     try {
+
       const response = await API.get("/google-docs");
+
+      console.log("GOOGLE DOCS:", response.data);
+
       setDocs(response.data);
+
     } catch (error) {
-      console.log(error);
+
+      console.log("GOOGLE DOCS ERROR:", error);
     }
   };
 
   return (
     <div>
-        
-      <h2>Google Docs</h2>
 
-      {docs.map((doc, index) => (
-        // <div key={index}>
-        //   <p>Title: {doc.title}</p>
-        //   <p>Owner: {doc.owner}</p>
-        //   <hr />
-        // </div>
+      <h2>Document Repository</h2>
 
-        <div key={index} className="employee-card">
-  <h3>{doc.title}</h3>
-  <p>Owner: {doc.owner}</p>
-</div>
-      ))}
+      <p>
+        Total Docs: {docs.length}
+      </p>
+
+      {docs.length === 0 ? (
+        <p>No documents found</p>
+      ) : (
+        docs.map((doc, index) => (
+          <div
+            key={index}
+            className="employee-card"
+            style={{
+              marginBottom: "15px"
+            }}
+          >
+            <h3>{doc.title}</h3>
+
+            
+             <p>Source: Google Drive</p>
+            
+          </div>
+        ))
+      )}
+
     </div>
   );
 }

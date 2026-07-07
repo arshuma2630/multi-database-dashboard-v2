@@ -1,37 +1,48 @@
 function Sidebar({ activePage, setActivePage }) {
   return (
     <div className="sidebar">
-      <h2>Dashboard</h2>
+
+      <h2>Compliance Dashboard</h2>
 
       <ul>
+
         <li
-  className={activePage === "mysql" ? "active" : ""}
-  onClick={() => setActivePage("mysql")}
+          className={activePage === "mysql" ? "active" : ""}
+          onClick={() => setActivePage("mysql")}
+        >
+          👥 Employee Records
+        </li>
+
+        <li
+          className={activePage === "mongo" ? "active" : ""}
+          onClick={() => setActivePage("mongo")}
+        >
+          ✅ Training & Compliance
+        </li>
+
+        <li
+          className={activePage === "docs" ? "active" : ""}
+          onClick={() => setActivePage("docs")}
+        >
+          📄 Document Repository
+        </li>
+
+        <li
+          className={activePage === "upload" ? "active" : ""}
+          onClick={() => setActivePage("upload")}
+        >
+          📤 File Management
+        </li>
+
+        <li
+  className={activePage === "ai" ? "active" : ""}
+  onClick={() => setActivePage("ai")}
 >
-  🗄️ MySQL
+  🤖 AI Query Assistant
 </li>
 
-<li
-  className={activePage === "mongo" ? "active" : ""}
-  onClick={() => setActivePage("mongo")}
->
-  🍃 MongoDB
-</li>
-
-<li
-  className={activePage === "docs" ? "active" : ""}
-  onClick={() => setActivePage("docs")}
->
-  📄 Google Docs
-</li>
-
-<li
-  className={activePage === "upload" ? "active" : ""}
-  onClick={() => setActivePage("upload")}
->
-  📤 Upload Files
-</li>
       </ul>
+
     </div>
   );
 }
